@@ -8,30 +8,14 @@
 
 <script>
 
-console.log(
-	document.doctype.nodeName,
-  document.doctype.nodeType
-);
+//logs null for DOCUMENT_TYPE_NODE, DOCUMENT_NODE, DOCUMENT_FRAGMENT_NODE, ELEMENT_NODE below
+console.log(document.doctype.nodeValue);
+console.log(document.nodeValue);
+console.log(document.createDocumentFragment().nodeValue);
+console.log(document.querySelector('a').nodeVale);
 
-console.log(
-	document.nodeName,
-	document.nodeType
-);
-
-console.log(
-	document.createDocumentFragment().nodeName,
-	document.createDocumentFragment().nodeType
-);
-
-console.log(
-	document.querySelector('a').nodeName,
-	document.querySelector('a').nodeType
-);
-
-console.log(
-	document.querySelector('a').firstChild.nodeName,
-	document.querySelector('a').firstChild.nodeType
-);
+//logs string of text
+console.log(document.querySelector('a').firstChild.nodeValue); //logs 'Hi'
 
 </script>
 </body>
