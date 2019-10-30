@@ -10,5 +10,27 @@
     <div class='green'>
       hello world
     </div>
+    <template>
+      <img src='{src}' alt='{alt}' />
+      <div class='comment'>{comment}</div>
+    </template>
+    <script>
+      function createNodes(model) {
+        var fragment = document.querySelector('template').content;
+        var instance = fragment.clone(true);
+	var img = fragment.querySelector('img');
+	img.setAttribute('src', model.src);
+	img.setAttribute('alt', model.alt);
+	var div = instance.querySelector('div');
+	div.textContent = model.comment;
+	return instance;
+      }
+      var nodes = createNodes({
+        src: 'image.png',
+	alt: 'Image',
+	comment: 'Great!'
+      });
+      document.querySelector('.comment').appendChild(nodes);
+    </script>
   </body>
 </html>
