@@ -5,17 +5,34 @@
 </head>
 <body>
 <a href="#">Hi</a>
+
 <script>
 
-var nodeAnchor = document.querySelector('a');
+console.log(
+	document.doctype.nodeName,
+  document.doctype.nodeType
+);
 
-var props = [];
+console.log(
+	document.nodeName,
+	document.nodeType
+);
 
-for(var key in nodeAnchor){
-    props.push(key);
-}
+console.log(
+	document.createDocumentFragment().nodeName,
+	document.createDocumentFragment().nodeType
+);
 
-console.log(props.sort());
+console.log(
+	document.querySelector('a').nodeName,
+	document.querySelector('a').nodeType
+);
+
+console.log(
+	document.querySelector('a').firstChild.nodeName,
+	document.querySelector('a').firstChild.nodeType
+);
+
 </script>
 </body>
 </html>
