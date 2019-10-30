@@ -4,12 +4,17 @@
 <title>HTML</title>
 </head>
 <body>
+<a href="#">Hi</a>
 <script>
 
-for(var key in Node){
-  console.log(key,' = '+Node[key]);
-};
+var nodeAnchor = document.querySelector('a');
 
-</script>
+var props = [];
+
+for(var key in nodeAnchor){
+    props.push(key);
+}
+
+console.log(props.sort());
 </body>
 </html>
