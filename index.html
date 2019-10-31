@@ -4,21 +4,15 @@
 <title>HTML</title>
 </head>
 <body>
-<i id="elm">how</i>
+<textarea></textarea>
 
 <script>
 
-var elm = document.getElementById('elm');
+//set focus to <textarea>
+document.querySelector('textarea').focus();
 
-elm.insertAdjacentHTML('beforebegin', '<span>Hey-</span>');
-elm.insertAdjacentHTML('afterbegin', '<span>dude-</span>');
-elm.insertAdjacentHTML('beforeend', '<span>-are</span>');
-elm.insertAdjacentHTML('afterend', '<span>-you?</span>');
-
-console.log(document.body.innerHTML);
-/* logs
-<span>Hey-</span><i id="A"><span>dude-</span>how<span>-are</span></i><span>-you?</span>
-*/
+​//get reference to element that is focused/active in the document
+console.log(document.activeElement); //logs <textarea>
 
 </script>
 </body>
