@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<title>HTML</title>
-</head>
 <body>
-<textarea></textarea>
+
+<p>hi</p>
 
 <script>
+var text = document.querySelector('p').firstChild;
 
-//set focus to <textarea>
-document.querySelector('textarea').focus();
+//text own properties
+console.log(Object.keys(text).sort());
 
-console.log(document.activeElement); //logs <textarea>
+//text own properties & inherited properties
+var textPropertiesIncludeInherited = [];
+for(var p in text){
+	textPropertiesIncludeInherited.push(p);
+}
+console.log(textPropertiesIncludeInherited.sort());
+
+//text inherited properties only
+var textPropertiesOnlyInherited = [];
+for(var p in text){
+	if(!text.hasOwnProperty(p)){
+		textPropertiesOnlyInherited.push(p);
+	}
+}
+console.log(textPropertiesOnlyInherited.sort());
 
 </script>
 </body>
