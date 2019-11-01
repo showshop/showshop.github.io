@@ -2,29 +2,12 @@
 <html lang="en">
 <body>
 
-<p>hi</p>
+<p id="p1"></p> //yes there is a carriage return text node before this comment, even this comment is a node
+<p id="p2"></p>
 
 <script>
-var text = document.querySelector('p').firstChild;
 
-//text own properties
-console.log(Object.keys(text).sort());
-
-//text own properties & inherited properties
-var textPropertiesIncludeInherited = [];
-for(var p in text){
-	textPropertiesIncludeInherited.push(p);
-}
-console.log(textPropertiesIncludeInherited.sort());
-
-//text inherited properties only
-var textPropertiesOnlyInherited = [];
-for(var p in text){
-	if(!text.hasOwnProperty(p)){
-		textPropertiesOnlyInherited.push(p);
-	}
-}
-console.log(textPropertiesOnlyInherited.sort());
+console.log(document.querySelector('#p1').nextSibling) //logs Text
 
 </script>
 </body>
