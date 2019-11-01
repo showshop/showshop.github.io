@@ -1,19 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<div></div>
-
 <body>
-
+<h1> Dude</h2>
+<p>you <strong>rock!</strong></p>
 <script>
 
-var elementNode = document.createElement('p');
-var textNode = document.createTextNode('Hi');
-elementNode.appendChild(textNode);
-document.querySelector('div').appendChild(elementNode);
-
-console.log(document.querySelector('div').innerHTML); //logs <div>Hi</div>
-
-</script>
+console.log(document.body.textContent);
 </body>
 </html>
