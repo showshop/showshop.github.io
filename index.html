@@ -32,7 +32,7 @@ shadowRoot.innerHTML = '<p>Open! I should not be red</p>';
     style.innerHTML = `p { color: ${color} }`;
     
     const text = document.createElement('p')
-    text.innerHTML = this.innerHTML
+    text.innerHTML = ":::"+this.innerHTML
 
     shadowDOM.appendChild(style)
     shadowDOM.appendChild(text)    
