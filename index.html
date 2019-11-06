@@ -7,13 +7,19 @@
 </head>
 <body>
 <p>I'm red!</p>
-<div id="app"></div>
+<div id="open"></div>
+<div id="close"></div>
+
 
 <script>
 
-var shadowHost = document.querySelector('#app');
+var shadowHost = document.querySelector('#open');
 var shadowRoot = shadowHost.attachShadow({mode: 'open'});
-shadowRoot.innerHTML = '<p>I should not be red</p>';
+shadowRoot.innerHTML = '<p>Open! I should not be red</p>';
+  
+  var shadowHost = document.querySelector('#close');
+var shadowRoot = shadowHost.attachShadow({mode: 'close'});
+shadowRoot.innerHTML = '<p>Close! I should not be red open</p>';
 
 </script>
 </body>
