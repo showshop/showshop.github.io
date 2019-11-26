@@ -1,48 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<style>p {color:red;}</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css">
 </head>
 <body>
-<p>I'm red!</p>
-<div id="open"></div>
-  
-<colored-paragraph color="#3eb3e3">
-  Hello
-</colored-paragraph>
-
-
-<script>
-
-var shadowHost = document.querySelector('#open');
-var shadowRoot = shadowHost.attachShadow({mode: 'open'});
-shadowRoot.innerHTML = '<p>Open! I should not be red</p>';
-  
-  class ColoredParagraph extends HTMLElement { 
-  constructor () {
-    super() 
-    
-    const shadowDOM = this.attachShadow({ mode: 'open' })     
-
-    const color = this.getAttribute('color');
-    
-    const style = document.createElement('style');
-    style.innerHTML = `p { color: ${color} }`;
-    
-    const text = document.createElement('p')
-    text.innerHTML = ":::"+this.innerHTML
-
-    shadowDOM.appendChild(style)
-    shadowDOM.appendChild(text)    
-  }
-
-}
-
-customElements.define('colored-paragraph', ColoredParagraph);
-
-
-</script>
+    <div id="app">
+        <p>hello Kursor.js</p>
+    </div>
 </body>
+    <script src="https://unpkg.com/kursor"></script>
+    <script>
+        new kursor({
+            type: 1
+        })
+    </script>
 </html>
