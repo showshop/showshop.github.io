@@ -47,11 +47,12 @@
     const shadow = this.attachShadow({mode: 'open'});
     shadow.appendChild(template.content.cloneNode(true));
     window.addEventListener('mousemove', (e) => {
-      console.log(this.shadowRoot);
-      const cyCursor = document.querySelector('cy-cursor');
-      cyCursor.style.left = `${e.x}px`;
-      cyCursor.style.top = `${e.y}px`;
-      
+      const cyFocus = this.shadowRoot.querySelector('cy-focus');
+      const cyPoint = this.shadowRoot.querySelector('cy-point');
+      cyFocus.style.left = `${e.x}px`;
+      cyFocus.style.top = `${e.y}px`;
+      cyPoint.style.left = `${e.x}px`;
+      cyPoint.style.top = `${e.y}px`;
     });
   }
 }
