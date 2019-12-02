@@ -5,12 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script>
+        class CyCursor extends HTMLElement {
+  constructor() {
+    super();
+    let template = document.getElementById('cy-cursor');
+    if (template == null) {
+      template = document.createElement('template');
+      template.setAttribute('id', 'cy-cursor');
+      template.innerHTML = `
+        <style>
+          div {
+            border-radius: 50%;
+            
+          }
+          .cc {
+            margin: 0 auto;
+          }
+          .cy {
+            position: fixed;
+            transform: translate(-50%,-50%);
+            pointer-events: none;
+          }
+          .cy-focus {
+            width: 25px;
+            height: 25px;
+            border: 2px solid #ff0000ff;
+            
+          }
+          .cy-point {
+            width: 4px;
+            height: 4px;
+            background: #ff0000ff;
+          }
+        </style>
+        <div class='c'>
+        <div class='cy cy-focus'></div>
+        <div class='cy cy-point'></div>
+        </div>
+      `;
+      document.body.appendChild(template);
+    }
+    const shadow = this.attachShadow({mode: 'open'});
+    shadow.appendChild(template.content.cloneNode(true));
+    window.addEventListener('mousemove', (e) => {
+      const cyFocus = document.querySelector('.cy-focus');
+      const cyPoint = document.querySelector('.cy-point');
+      cyFocus.style.left = `${e.x}px`;
+      cyFocus.style.top = `${e.y}px`;
+      cyPoint.style.left = `${e.x}px`;
+      cyPoint.style.top = `${e.y}px`;
+    });
+  }
+}
+
+customElements.define('cy-cursor', CyCursor);
+    </script>
     
 </head>
 <body>
-    <div id="app">
-        <p>hello Kursor.js</p>
-    </div>
+    <cy-cursor></cy-cursor>
     
 </body>
     
