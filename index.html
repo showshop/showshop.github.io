@@ -44,15 +44,13 @@ class ScrollPane extends HTMLDivElement {
     
     thumb.style.height = `${thumbHeight}px`;
     thumb.style.transform = `
-         scale(${1/thumb.scaling})
          matrix3d(
            1, 0, 0, 0,
            0, 1, 0, 0,
            0, 0, 1, 0,
            0, 0, 0, -1
          )
-         translateZ(${-2 + 1 - 1/thumb.scaling}px)
-         translateX(-10px)
+         
     `;
   }
   
