@@ -1,45 +1,137 @@
 <!DOCTYPE HTML>
-<style>
-  ::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
-  }
-  html, body {
-    margin: 0;
-    border: 0;
-    padding:0 ;
-    height: 100%;
-    overflow: hidden;
-  }
-  .overflow {
-    overflow-x: hidden;
-    overflow-y: scroll;
-    background: #EDEDED;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    -webkit-overflow-scrolling: touch;
-  }
-  .thumb {
-    width: 68px;
-    background-image: url('cat.gif'), linear-gradient(90deg, transparent, magenta, red, yellow, limegreen, turquoise, blue, magenta, transparent);
-    background-position: center bottom, center -40px;
-    background-repeat: no-repeat, no-repeat;
-    background-size: contain, contain;
-  }
-  .fakecontent {
-    padding: 25vh 0;
-    border: 1px solid transparent;
-  }
+
 </style>
-<main class="glider-scrollable overflow">
-  <div class="fakecontent">Lorem</div>
-  <div class="fakecontent">ipsum</div>
-  <div class="fakecontent">dolor</div>
-  <div class="fakecontent">sit</div>
-  <div class="fakecontent">amet,</div>
-  <div class="fakecontent">consectetur</div>
-  <div class="fakecontent">adipiscing</div>
-  <div class="fakecontent">elit</div>
-</main>
-<script src="scrollbar.js"></script>
+
+
+<div is="scroll-pane">
+  <div slot='content' style='width:200px; height:3000px;background: #8eff00;'>1</div>
+  <div slot='content' style='width:200px; height:3000px;background: #8eff55;'>2</div>
+</div>
+
+
+
+<script>
+
+class ScrollPane extends HTMLDivElement {
+  constructor() {
+    super();
+    this.attachShadow({mode: 'open'});
+    this.render();
+  }
+  
+  render() {
+    this.shadowRoot.innerHTML = this.getTemplate();
+  }
+  
+  connectedCallback() {
+    this.thumbSize();
+  }
+  
+  thumbSize() {
+    const thumb = this.shadowRoot.querySelector('.thumb');
+    const viewport = this.getBoundingClientRect();
+    const scrollHeight = this.scrollHeight;
+    console.log('viewportHeight: ', viewport.height);
+    console.log('scrollHeight: ', scrollHeight);
+    const maxScrollTop = scrollHeight - viewport.height;
+    console.log('maxScrollTop: ', maxScrollTop);
+    const thumbHeight = Math.pow(viewport.height, 2) / scrollHeight;
+    const thumbMaxTopOffset = viewport.height - thumbHeight;
+    console.log('thumbHeight: ', thumbHeight);
+    console.log('maxTopOffset: ', thumbMaxTopOffset);
+    thumb.scaling = thumbMaxTopOffset / maxScrollTop;
+    console.log('thumb.scaling: ', thumb.scaling);
+    
+    thumb.style.height = `${thumbHeight}px`;
+    thumb.style.transform = `
+         scale(${1/thumb.scaling})
+         matrix3d(
+           1, 0, 0, 0,
+           0, 1, 0, 0,
+           0, 0, 1, 0,
+           0, 0, 0, -1
+         )
+         translateZ(${-2 + 1 - 1/thumb.scaling}px)
+         translateX(-10px)
+    `;
+  }
+  
+  getTemplate() {
+    return `
+      <slot name='content'></slot>
+      <div class='track'>
+        <div class='thumb'></div>
+      </div>
+      ${this.getStyle()}
+    `;
+  }
+  
+  getStyle() {
+    return `
+      <style>
+        :host {
+          position: relative;
+          overflow-y: hidden;
+          width: 100%;
+        }
+        //:host::-webkit-scrollbar {
+          display: block;
+        }
+        //:host::-webkit-scrollbar-track {
+          box-shadow: inset 0 0 16px rgba(0,0,0,0.6);
+          border-radius: 12px;
+        }
+        //:host::-webkit-scrollbar-thumb {
+          box-shadow: inset 0 0 16px rgba(0,0,0,1);
+          border-radius: 12px;
+        }
+        .track {
+          position: absolute;
+          transform-origin: top right;
+          top: 0;
+          right: 0px;
+          width: 12px;
+          height: 120px;
+          //box-shadow: inset 0 0 12px rgba(0,0,0,0.6);
+          //border-radius: 12px;
+        }
+        .thumb {
+          transform-style: preserve-3d;
+          perspective: 1px;
+          //width: inherit;
+          //height: 60px;
+          box-shadow: inset 0 0 12px rgba(0,0,0,1);
+          border-radius: 12px;
+        }
+      </style>
+    `;
+  }
+};
+
+customElements.define('scroll-pane', ScrollPane, { extends: "div"});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
