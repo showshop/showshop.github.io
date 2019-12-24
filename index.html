@@ -38,21 +38,22 @@ class MenuButton extends HTMLDivElement {
         :host {
           width: max-content;
           position: fixed;
-          height: inherit;
+          height: 100vh;
           display: grid;
           grid-template-rows: 60px 1fr;
         }
         #menu-button {
+          background: #642b73;
           background: #923671;
         }
-        #menu {
-          //background: linear-gradient(to top, #c6426e, #642b73, #c6426e);
-          //height: 200px;
+        #scroll {
+          //background: linear-gradient(to top left, #642b73, #c6426e);
           background: #c6426e;
         }
         
         #settings {
-          background: linear-gradient(to top, #642b73, #923671);
+          background: #923671;
+          //background: linear-gradient(to top left, #642b73, #923671);
         }
         ${this.styleWebkitAnchor()}
         ${this.styleScrollMenu()}
@@ -74,16 +75,7 @@ class MenuButton extends HTMLDivElement {
           background: #333;
         }
         
-        //#settings {
-          position: sticky;
-          bottom: 0px;
-        }
-        
-        slot[name='menu-item']::slotted(a) {
-          border-bottom: 1px solid #f9f9f9;
-        }
-        
-        //slot[name='menu-item']::slotted(:not(:last-child)) {
+        slot[name='menu-item']::slotted(:not(:last-child)) {
           border-bottom: 1px solid #f9f9f9;
         }
         //::slotted([slot='menu-item']:not(:last-child)) {
@@ -95,7 +87,7 @@ class MenuButton extends HTMLDivElement {
   styleScrollMenu() {
     return `
       #scroll {
-        height: calc(100vh - 120px - 10px);
+        height: calc(100vh - 120px);
         overflow: auto;
         overflow-x: hidden;
       }
@@ -222,6 +214,7 @@ customElements.define('item-anchor', ItemAnchor, { extends: "a"});
 </script>
 
 
+
 <div is='menu-button'>
   
         <a is='item-anchor' id='Menu' slot='menu-button'>
@@ -252,6 +245,10 @@ customElements.define('item-anchor', ItemAnchor, { extends: "a"});
             <label slot='label'>Menu</label>
           </div>
         </a>
+  
+  
+  
+  
   
   
   <a is='item-anchor' id='Search' slot='menu-item'>
@@ -492,6 +489,17 @@ customElements.define('item-anchor', ItemAnchor, { extends: "a"});
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <a is='item-anchor' id='Locate5'  slot='settings'>
     <div is='item-button'>
       <svg slot='icon' viewBox="0 0 512 512">
@@ -501,15 +509,6 @@ customElements.define('item-anchor', ItemAnchor, { extends: "a"});
     </div>
     
     </a>
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
