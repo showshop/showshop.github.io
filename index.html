@@ -1,22 +1,20 @@
 <script>
-  
-  
-  class MenuButton extends HTMLDivElement {
+class MenuButton extends HTMLDivElement {
   constructor() {
     super();
-    this.attachShadow({mode: 'open'});
+    this.attachShadow({ mode: 'open' });
     this.render();
-    this.shadowRoot
-        .querySelector('#menu-button')
-        .addEventListener('click', (e) => {
-          this.menu();
-        });
+    this.shadowRoot.
+    querySelector('#menu-button').
+    addEventListener('click', e => {
+      this.menu();
+    });
   }
-  
+
   render() {
     this.shadowRoot.innerHTML = this.template();
   }
-  
+
   template() {
     return `
       <div id='menu-button'>
@@ -33,7 +31,7 @@
       ${this.style()}
     `;
   }
-  
+
   style() {
     return `
       <style>
@@ -62,7 +60,7 @@
       </style>
     `;
   }
-  
+
   styleWebkitAnchor() {
     return `
         ::slotted(a) {
@@ -85,7 +83,7 @@
         }
     `;
   }
-  
+
   styleScrollMenu() {
     return `
       #scroll {
@@ -98,7 +96,7 @@
       ${this.styleFirefoxScrollbar()}
     `;
   }
-  
+
   styleScrollSnap() {
     return `
       #scroll {
@@ -110,7 +108,7 @@
       }
     `;
   }
-  
+
   styleWebkitScrollbar() {
     return `
       #scroll::-webkit-scrollbar,
@@ -131,7 +129,7 @@
       }
     `;
   }
-  
+
   styleFirefoxScrollbar() {
     return `
       #scroll,
@@ -144,28 +142,28 @@
       }
     `;
   }
-  
+
   menu() {
     const menu = this.shadowRoot.querySelector('#menu');
     menu.style.visibility === 'hidden' ?
-    menu.style.visibility = 'visible'  :
+    menu.style.visibility = 'visible' :
     menu.style.visibility = 'hidden';
-  }
-};
+  }}
+;
 
-customElements.define('menu-button', MenuButton, { extends: "div"});
+customElements.define('menu-button', MenuButton, { extends: "div" });
 
 class ItemButton extends HTMLDivElement {
   constructor() {
     super();
-    this.attachShadow({mode: 'open'});
+    this.attachShadow({ mode: 'open' });
     this.render();
   }
-  
+
   render() {
     this.shadowRoot.innerHTML = this.template();
   }
-  
+
   template() {
     return `
       <slot name='icon'></slot>
@@ -173,7 +171,7 @@ class ItemButton extends HTMLDivElement {
       ${this.style()}
     `;
   }
-  
+
   style() {
     return `
       <style>
@@ -199,19 +197,19 @@ class ItemButton extends HTMLDivElement {
         }
       </style>
     `;
-  }
-};
+  }}
+;
 
-customElements.define('item-button', ItemButton, { extends: "div"});
+customElements.define('item-button', ItemButton, { extends: "div" });
 
 class ItemAnchor extends HTMLAnchorElement {
   constructor() {
     super();
     this.href = `#${this.id}`;
-  }
-}
+  }}
 
-customElements.define('item-anchor', ItemAnchor, { extends: "a"});
+
+customElements.define('item-anchor', ItemAnchor, { extends: "a" });
   
   
   
@@ -221,19 +219,7 @@ customElements.define('item-anchor', ItemAnchor, { extends: "a"});
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-</script>
+    </script>
 
 
 
