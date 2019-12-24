@@ -38,22 +38,21 @@ class MenuButton extends HTMLDivElement {
         :host {
           width: max-content;
           position: fixed;
-          height: 100vh;
+          height: inherit;
           display: grid;
-          grid-template-rows: 60px 1fr 60px;
-          padding: 10px;
+          grid-template-rows: 60px 1fr;
         }
         #menu-button {
           background: #923671;
         }
         #menu {
-          background: linear-gradient(to top, #642b73, #c6426e);
+          //background: linear-gradient(to top, #c6426e, #642b73, #c6426e);
           //height: 200px;
+          background: #c6426e;
         }
         
         #settings {
-          background: linear-gradient(to top, #642b73, #c6426e);
-          //height: 200px;
+          background: linear-gradient(to top, #642b73, #923671);
         }
         ${this.styleWebkitAnchor()}
         ${this.styleScrollMenu()}
@@ -75,7 +74,7 @@ class MenuButton extends HTMLDivElement {
           background: #333;
         }
         
-        #settings {
+        //#settings {
           position: sticky;
           bottom: 0px;
         }
@@ -95,7 +94,8 @@ class MenuButton extends HTMLDivElement {
   
   styleScrollMenu() {
     return `
-      #menu {
+      #scroll {
+        height: calc(100vh - 120px);
         overflow: auto;
         overflow-x: hidden;
       }
@@ -107,7 +107,7 @@ class MenuButton extends HTMLDivElement {
   
   styleScrollSnap() {
     return `
-      #menu {
+      #scroll {
         scroll-snap-type: y mandatory;
         scroll-padding: 15px;
       }
@@ -119,20 +119,20 @@ class MenuButton extends HTMLDivElement {
   
   styleWebkitScrollbar() {
     return `
-      #menu::-webkit-scrollbar,
-      #menu:hover::-webkit-scrollbar {
+      #scroll::-webkit-scrollbar,
+      #scroll:hover::-webkit-scrollbar {
         display: block;
         width: 6px;
       }
-      #menu::-webkit-scrollbar-track,
-      #menu:hover::-webkit-scrollbar-track {
+      #scroll::-webkit-scrollbar-track,
+      #scroll:hover::-webkit-scrollbar-track {
         background-color: #0000;
       }
-      #menu::-webkit-scrollbar-thumb,
-      #menu:hover::-webkit-scrollbar-thumb {
+      #scroll::-webkit-scrollbar-thumb,
+      #scroll:hover::-webkit-scrollbar-thumb {
         background-color: #e36b4e;
       }
-      #menu::-webkit-scrollbar {
+      #scroll::-webkit-scrollbar {
         display: none;
       }
     `;
@@ -140,12 +140,12 @@ class MenuButton extends HTMLDivElement {
   
   styleFirefoxScrollbar() {
     return `
-      #menu,
-      #menu:hover {
+      #scroll,
+      #scroll:hover {
         scrollbar-width: thin;
         scrollbar-color: #e36b4e #0000;
       }
-      #menu {
+      #scroll {
         scrollbar-width: none;
       }
     `;
