@@ -217,10 +217,18 @@ class ItemAnchor extends HTMLAnchorElement {
     super();
   }
  
+  static get observedAttributes() {
+    return ['href'];
+  }
+ 
+  attributeChangedCallback(name, oldValue, newValue) {
+    console.log(name, ": ", oldVale, ", ", newValue, "; ");
+  }
+ 
  connectedCallback() {
-  console.log(this.id);
-  console.log(this.href);
-  this.href = `#${this.id}`;
+    console.log(this.id);
+    console.log(this.href);
+    this.href = `#${this.id}`;
  }
 };
 
