@@ -216,6 +216,12 @@ class ItemAnchor extends HTMLAnchorElement {
   constructor() {
     super();
   }
+ 
+ disconnectedCallback() {
+  console.log(this.id);
+  console.log(this.href);
+  this.href = `#${this.id}`;
+ }
 };
 
 customElements.define('item-anchor', ItemAnchor, { extends: "a"});
